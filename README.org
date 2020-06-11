@@ -1,0 +1,10 @@
+#+TITLE: Zkanki
+
+An integration of ZettelKasten and Anki.
+
+This code relies on Anki deck serialisation from [[https://github.com/Stvad/CrowdAnki][CrowdAnki]]
+which exports and imports Anki decks in json format.
+
+
+	
+
