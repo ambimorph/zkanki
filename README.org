@@ -73,7 +73,7 @@ Links to the file will use the filename until the nid is created.
 ** File structure
 
 I'll use Emacs org-mode markup,
-structured to be easy to parse to the [[#anki-side][Anki fields]]
+structured to be easy to parse to the [[#anki-fields][Anki fields]]
 
 *** Trade-offs to favour GitHub rendering
 
