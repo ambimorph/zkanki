@@ -9,10 +9,9 @@ and Anki such that:
   followed by more explanation as necessary and links to other Zettel.
 - Links between notes are preserved and represented in Anki
 
-This code relies on three add-ons:
+This code relies on these add-ons:
 - [[https://github.com/FooSoft/anki-connect][AnkiConnect]] which enables external applications to communicate with Anki over an HTTP API.
 - [[https://ankiweb.net/shared/info/1423933177][link cards/notes and preview them in extra window]] which enables linking notes by Note ID (nid)
-- 
 
 * Motivation
 
