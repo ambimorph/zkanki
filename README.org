@@ -2,9 +2,109 @@
 
 An integration of ZettelKasten and Anki.
 
-This code relies on Anki deck serialisation from [[https://github.com/Stvad/CrowdAnki][CrowdAnki]]
-which exports and imports Anki decks in json format.
+The idea is to sync between Zettel written in a specially formatted org-mode file
+and Anki such that:
+
+- The Zettel start with a short representative text with focal words or phrases that will correspond to cloze deletions
+  followed by more explanation as necessary and links to other Zettel.
+- Links between notes are preserved and represented in Anki
+
+This code relies on three add-ons:
+- [[https://github.com/FooSoft/anki-connect][AnkiConnect]] which enables external applications to communicate with Anki over an HTTP API.
+- [[https://ankiweb.net/shared/info/1423933177][link cards/notes and preview them in extra window]] which enables linking notes by Note ID (nid)
+- 
+
+* Motivation
+
+I recently found out about Zettelkasten through a friend, who pointed me to 
+[[https://zettelkasten.de/posts/overview][zettelkasten.de]], and [[https://www.amazon.com/How-Take-Smart-Notes-Nonfiction/dp/1542866502/][Sönke Ahrens' How to Take Smart Notes]].
+This approach to note management seems extremely powerful,
+and I already /sometimes/ do something similar with my notes,
+but not consistently or deliberately.
+Those times when I do my best writing,
+it's in part because of having collected superior notes
+and contemplated them, growing them
+and understanding them in wider contexts over months or years.
+Zettelkasten immediately appealed to me as a way to
+formalise what works best for me into my usual practice.
+I immediately wanted to start implementing it,
+but it seemed a bit at odds with the Anki practice I had been honing.
+
+I use Anki in a slightly idiosyncratic way.
+With few exceptions, I find cloze deletions the most effective
+type of card for me, even for vocabulary,
+because I can use them to build contextual understanding.
+I will often when reviewing, spontaneously write new notes
+reflecting new ideas spurred by the review.
+I also had been using them as a way to remember ideas from
+journal papers or books.
+
+I like that the Anki algorithm will help bring my notes up to me a again,
+which is something that may never happen with notes in a file system.
+And I also like the active memory practice which is far superior to just rereading.
+But I much prefer to edit my notes in files in emacs than in some GUI.
+
+In general, Anki notes are better if they are short —
+no more than a sentence or two — 
+whereas Zettel are probably usually better as a paragraph.
+So in my hybrid, I'm proposing to have a short summary
+which will display as the cloze text,
+and then the rest of the note in the "extra" field.
 
 
+* Design in progress
+
+** Anki fields
+:PROPERTIES:
+:CUSTOM_ID: anki-fields
+:END:
 	
+Note type called zkanki-cloze has fields:
+*** Text
+This is regular cloze deletion text.
+*** Extra
+This allows the Zettel to be as long as necessary
+without making a cloze deletion card that's too verbose.
+It also contains any links.
+*** Filename
+This field will hold filenames to maintain references
+that were created before Anki assigned a nid.
+Links to the file will use the filename until the nid is created.
+
+** File structure
+
+I'll use Emacs org-mode markup,
+structured to be easy to parse to the [[#anki-side][Anki fields]]
+
+*** Trade-offs to favour GitHub rendering
+
+GitHub renders org-mode as markup,
+but it is not at all the same
+as the html that org-mode exports.
+
+I had wanted to use only those features of org-mode
+that render well on GitHub (org-ruby) without "export",
+so I abandoned several initial formatting ideas,
+opting for mostly very simple text.
+
+Unfortunately, there is no way to represent
+internal links that works on both,
+other than setting CUSTOM_ID's manually.
+Footnotes are completely broken.
+
+To enhance I used some inline html that does render in GitHub
+sacrificing some readability on the emacs end,
+and that does not work on the exported html.
+
+See this [[src/test/example_file.org][example file]].
+
+
+
+
+
+
+
+
+
+
 
