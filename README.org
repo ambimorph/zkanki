@@ -2,7 +2,8 @@
 
 An integration of ZettelKasten and Anki.
 
-The idea is to sync between Zettel written in a specially formatted org-mode file
+The idea is to sync between Zettel written in
+a specially formatted reStructuredText file
 and Anki such that:
 
 - The Zettel start with a short representative text with focal words or phrases that will correspond to cloze deletions
@@ -65,37 +66,19 @@ This is regular cloze deletion text.
 This allows the Zettel to be as long as necessary
 without making a cloze deletion card that's too verbose.
 It also contains any links.
-*** Filename
-This field will hold filenames to maintain references
-that were created before Anki assigned a nid.
-Links to the file will use the filename until the nid is created.
 
 ** File structure
 
-I'll use Emacs org-mode markup,
+I'll use reStructuredText markup,
 structured to be easy to parse to the [[#anki-fields][Anki fields]]
 
-*** Trade-offs to favour GitHub rendering
+I had started designing this with org-mode in mind,
+despite several difficulties in the GitHub rendering
+which I also wanted to display well.
+However, once I realised I could use role inheritance
+in reST to markup cloze deletions, I switched to that.
 
-GitHub renders org-mode as markup,
-but it is not at all the same
-as the html that org-mode exports.
-
-I had wanted to use only those features of org-mode
-that render well on GitHub (org-ruby) without "export",
-so I abandoned several initial formatting ideas,
-opting for mostly very simple text.
-
-Unfortunately, there is no way to represent
-internal links that works on both,
-other than setting CUSTOM_ID's manually.
-Footnotes are completely broken.
-
-To enhance I used some inline html that does render in GitHub
-sacrificing some readability on the emacs end,
-and that does not work on the exported html.
-
-See this [[src/test/example_file.org][example file]].
+See this [[src/test/example_file.rst][example file]] for the format.
 
 
 
