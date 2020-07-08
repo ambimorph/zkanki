@@ -80,6 +80,16 @@ in reST to markup cloze deletions, I switched to that.
 
 See this [[src/zkanki/test/example_file.rst][example file]] for the format.
 
+This results in:
+
+#+CAPTION: reST as rendered on GitHub, "See More" unfolded
+[[example_rst_rendered_by_GitHub.png]]
+
+#+CAPTION: Anki resulting card front (one of several from the note)
+[[zkanki-preview-front.png]]
+
+#+CAPTION: Anki resulting card in answer mode
+[[zkanki-preview-answer.png]]
 
 
 
