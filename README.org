@@ -70,7 +70,7 @@ It also contains any links.
 ** File structure
 
 I'll use reStructuredText markup,
-structured to be easy to parse to the [[#anki-fields][Anki fields]]
+structured to be easy to parse to the [[#anki-fields][Anki fields]].
 
 I had started designing this with org-mode in mind,
 despite several difficulties in the GitHub rendering
@@ -78,7 +78,7 @@ which I also wanted to display well.
 However, once I realised I could use role inheritance
 in reST to markup cloze deletions, I switched to that.
 
-See this [[src/test/example_file.rst][example file]] for the format.
+See this [[src/zkanki/test/example_file.rst][example file]] for the format.
 
 
 

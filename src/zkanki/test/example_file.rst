@@ -29,10 +29,11 @@ The other fields are folded in the "See More".
 Links can be made throughout this section.
 If a link refers to a file that is an Anki note
 it will have the form ```nid1234567890123 <filename>`_``
+which renders: 
 `nid1234567890123 <filename>`_
 
 There can also be footnotes
-Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_
+Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_.
 
 .. rubric:: Footnotes
 
