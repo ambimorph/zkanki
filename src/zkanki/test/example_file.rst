@@ -11,7 +11,7 @@ Text
 
 This section is all that will show in :c1:`Anki` as the query
 and must contain at least one :c2:`cloze deletion`,
-represented with :c3:`literal` tags.
+represented with :c3:`reST emphasis` tags labelled as *ci*.
 
 In terms of a Zettel,
 I see it as a concise :c4:`summary`.
