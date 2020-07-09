@@ -18,7 +18,7 @@ class TestAnkiRST(unittest.TestCase):
                           'Extra': '<p>The other fields are folded in the "See More".</p>\n<p>Links can be made throughout this section.\nIf a link refers to a file that is an Anki note\nit will have the form <tt class="docutils literal">`nid0123456789012 <span class="pre">&lt;filename&gt;`_</span></tt>\nwhich renders:\n<a class="reference external" href="filename">nid0123456789012</a></p>\n<p>There can also be footnotes\nLorem ipsum <a class="footnote-reference" href="#f1" id="id1">[1]</a> dolor sit amet ... <a class="footnote-reference" href="#f2" id="id2">[2]</a>.</p>\n<p class="rubric">Footnotes</p>\n<table class="docutils footnote" frame="void" id="f1" rules="none">\n<colgroup><col class="label"/><col/></colgroup>\n<tbody valign="top">\n<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Text of the first footnote.</td></tr>\n</tbody>\n</table>\n<table class="docutils footnote" frame="void" id="f2" rules="none">\n<colgroup><col class="label"/><col/></colgroup>\n<tbody valign="top">\n<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Text of the second footnote.</td></tr>\n</tbody>\n</table>\n'},
                          'modelName': 'Zkanki-cloze',
                          'deckName': 'ZkankiTestDeck',
-                         'tags': [u'test,', u'zkanki']}
+                         'tags': [u'test', u'zkanki']}
 
     def tearDown(self):
 

@@ -1,5 +1,5 @@
 .. footer::
-   :tags: test, zkanki
+   :tags: test zkanki
 
 .. role:: c1(emphasis)
 .. role:: c2(emphasis)
