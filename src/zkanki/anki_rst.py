@@ -12,27 +12,40 @@ class AnkiNote(dict):
                                      'Extra': 'Something extra'})
         self['tags'] = kwargs.get('tags', ['test'])
 
-def rst_to_anki_note(rst):
+def rst_to_soup(rst):
 
     html = publish_parts(rst, writer_name='html')['html_body']
-    soup = BeautifulSoup(html, 'html.parser')
+    return BeautifulSoup(html, 'html.parser')
 
-    textobj = soup.find(id='text')
-    for cloze in textobj.find_all('em'):
+def soup_text_to_cloze(soup_text):
+
+    for cloze in soup_text.find_all('em'):
         try:
             cloze.replace_with('{{'+cloze['class'][0]+'::'+cloze.string+'}}')
         except KeyError:
             pass # Not a cloze deletion
-    textobj.h1.decompose()
-    text = ''.join(str(x) for x in textobj.contents)
+    soup_text.h1.decompose()
+    return ''.join(str(x) for x in soup_text.contents)
 
-    extraobj = soup.find(id='extra')
-    extraobj.details.summary.decompose()
-    extra = ''.join(str(x) for x in extraobj.details.contents)
+def soup_extra_to_extra(soup_extra):
 
-    footer = soup.find(class_='footer')
-    tagtup = [f for f in footer.stripped_strings]
-    tags = tagtup[1].split()
+    soup_extra.details.summary.decompose()
+    return ''.join(str(x) for x in soup_extra.details.contents)
+    
+def soup_footer_to_tags(soup_footer):
+
+    tagtup = [f for f in soup_footer.stripped_strings]
+    assert tagtup[0] == 'tags:'
+    return tagtup[1].split()
+    
+    
+def rst_to_anki_note(rst):
+
+    soup = rst_to_soup(rst)
+
+    text = soup_text_to_cloze(soup.find(id='text'))
+    extra = soup_extra_to_extra(soup.find(id='extra'))
+    tags = soup_footer_to_tags(soup.find(class_='footer'))
 
     return AnkiNote(fields = {'Text': text, 'Extra': extra}, tags=tags)
                 
