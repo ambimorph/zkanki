@@ -5,7 +5,7 @@
 .. role:: c2(emphasis)
 .. role:: c3(emphasis)
 .. role:: c4(emphasis)
-	  
+
 Text
 ----
 
@@ -21,7 +21,7 @@ Extra
 -----
 
 .. raw:: html
-     
+
      <details><summary>See More</summary>
 
 The other fields are folded in the "See More".
@@ -29,7 +29,7 @@ The other fields are folded in the "See More".
 Links can be made throughout this section.
 If a link refers to a file that is an Anki note
 it will have the form ```nid0123456789012 <filename>`_``
-which renders: 
+which renders:
 `nid0123456789012 <filename>`_
 
 There can also be footnotes
@@ -40,8 +40,7 @@ Lorem ipsum [#f1]_ dolor sit amet ... [#f2]_.
 .. [#f1] Text of the first footnote.
 .. [#f2] Text of the second footnote.
 
- 
+
 .. raw:: html
-    
+
     </details>
- 

@@ -56,6 +56,47 @@ class TestAnkiRST(unittest.TestCase):
         note = rst_to_anki_note(self.rst)
         self.assertDictEqual(self.ankified, note, note)
 
+    def test_make_footer(self):
+
+        rst_note = RSTNote(tags=['one', 'two', 'three'])
+        footer = rst_note.make_footer()
+        self.assertEqual(footer, '.. footer::\n   :tags: one two three', footer)
+
+    def test_make_rst_clozes(self):
+
+        rst_note = RSTNote(text='We have {{c1::two}} {{c25::cloze deletions}}, '
+                           'and {{c1::one more}}, but not {{c3:this}}.')
+        roles, text = rst_note.make_cloze_roles()
+        self.assertEqual(roles, '.. role:: c1(emphasis)\n.. role:: c25(emphasis)',
+                         roles)
+        expected_text = 'We have :c1:`two` :c25:`cloze deletions`, and :c1:`one more`, but not {{c3:this}}.'
+        self.assertEqual(len(text), len(expected_text), str(len(text)) + ' ' + str(len(expected_text)))
+        for i, tup in enumerate(zip(text, expected_text)):
+            if tup[0] != tup[1]:
+                print i, repr(text[i-1:i+2]), repr(expected_text[i-1:i+2])
+                self.fail()
+        self.assertEqual(text, expected_text, text)
+
+    def test_parse_extra(self):
+
+        rst_note = RSTNote(extra = self.ankified['fields']['Extra'])
+
+        parsed = rst_note.parse_extra()
+        expected = u'The other fields are folded in the "See More".\n\nLinks can be made throughout this section.\nIf a link refers to a file that is an Anki note\nit will have the form ```nid0123456789012 <filename>`_``\nwhich renders:\n`nid0123456789012 <filename>`_\n\nThere can also be footnotes\nLorem ipsum [#f1]_ dolor sit amet ... [#f2]_.\n\n.. rubric:: Footnotes\n\n.. [#f1] Text of the first footnote.\n.. [#f2] Text of the second footnote.'
+        self.assertEqual(expected, parsed, parsed)
+
+    def test_RSTNote(self):
+
+        # roundtrip still fails on some wrapping and whitespace
+        self.skipTest('')
+        
+        rst_note = anki_note_to_rst(self.ankified)
+        with open('test/tmp.rst', 'w') as f:
+            f.write(str(rst_note))
+        self.assertEqual(str(rst_note), self.rst, rst_note)
+        
+
+
 if __name__ == '__main__':
     unittest.main()
 

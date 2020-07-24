@@ -91,6 +91,11 @@ This results in:
 #+CAPTION: Anki resulting card in answer mode
 [[zkanki-preview-answer.png]]
 
+The supported rst is pretty fragile.
+I had to make decisions about how to render footnotes, literals,
+and just generally hackish handling of idiosyncratic rendering.
+
+Roundtrip still does not preserve all whitespace as desired.
 
 
 
