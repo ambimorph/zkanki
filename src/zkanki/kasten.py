@@ -73,3 +73,11 @@ class Kasten:
         os.link(fname, os.path.join(self.kasten_path, kasten_filename))
         return kasten_filename
 
+
+    def kasten_to_anki_update(self, kasten_filename):
+
+        with open(os.path.join(self.kasten_path,kasten_filename), 'r') as f:
+            rst = f.read()
+        anki_note = rst_to_anki_note(rst)
+        anki_note['id'] = int(os.path.splitext(os.path.basename(kasten_filename))[0])
+        invoke('updateNoteFields', note=anki_note)
