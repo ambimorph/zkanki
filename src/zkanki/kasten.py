@@ -81,3 +81,15 @@ class Kasten:
         anki_note = rst_to_anki_note(rst)
         anki_note['id'] = int(os.path.splitext(os.path.basename(kasten_filename))[0])
         invoke('updateNoteFields', note=anki_note)
+
+    def anki_to_kasten(self, nid):
+
+        note = invoke('notesInfo', notes=[str(nid)])[0]
+        rst_str = str(anki_note_to_rst(AnkiNote(note)))
+        fname = os.path.join(self.kasten_path, str(nid) + '.rst')
+        with open(fname, 'w') as f:
+            f.write(rst_str)
+        assert self.file_in_kasten(fname)
+        return os.path.basename(fname)
+        
+        
